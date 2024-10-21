@@ -118,19 +118,6 @@ const Sidebar = () => {
           // ]}
         />
       </nav>
-
-      <div className="absolute bottom-0 w-full p-4">
-        {isOpen ? (
-          <button className="flex items-center w-full p-2 text-gray-700 hover:bg-gray-200">
-            <FaSignOutAlt className="w-5 h-5" />
-            <span className="ml-2">Sign Out</span>
-          </button>
-        ) : (
-          <button className="flex items-center justify-center w-full p-2 text-gray-700 hover:bg-gray-200">
-            <FaSignOutAlt className="w-5 h-5" />
-          </button>
-        )}
-      </div>
     </div>
   );
 };
