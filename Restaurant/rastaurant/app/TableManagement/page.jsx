@@ -1,48 +1,37 @@
 "use client";
-import { useState, useEffect } from "react";
 import Layout from "@/components/common/Layout";
+import TableFilter from "@/components/TableManagement/TableFilter";
+import TableFloorSelector from "@/components/TableManagement/TableFloorSelector";
 import TableGrid from "@/components/TableManagement/TableGrid";
-import FloorSelector from "@/components/TableManagement/FloorSelector";
-import { fetchTables } from "@/lib/api";
-import withAuth from "@/components/common/withAuth";
+import TableStatusLegend from "@/components/TableManagement/TableStatusLegend";
+import * as React from "react";
+import { useState } from "react";
 
-function TableManagement() {
-  const [tables, setTables] = useState([]);
-  const [currentFloor, setCurrentFloor] = useState("1 Floor");
-
-  useEffect(() => {
-    const loadTables = async () => {
-      const fetchedTables = await fetchTables(currentFloor);
-      setTables(fetchedTables);
-    };
-    loadTables();
-  }, [currentFloor]);
-
-  const handleFloorChange = (floor) => {
-    setCurrentFloor(floor);
-  };
-
-  const handleTableStatusChange = (tableId, newStatus) => {
-    setTables(
-      tables.map((table) =>
-        table.id === tableId ? { ...table, status: newStatus } : table
-      )
-    );
-    // Here you would also make an API call to update the table status on the server
-  };
+export default function TableLayout() {
+  const [selectedFloor, setSelectedFloor] = useState(1);
+  const [selectedFilter, setSelectedFilter] = useState("all");
 
   return (
     <Layout>
-      <TableGrid
-        tables={tables}
-        onTableStatusChange={handleTableStatusChange}
-      />
-      <FloorSelector
-        currentFloor={currentFloor}
-        onFloorChange={handleFloorChange}
-      />
+      <main className="flex flex-col items-center p-4 md:p-6 lg:p-8 min-h-screen ">
+        <section className="flex flex-col md:flex-row gap-6 md:gap-10 justify-between items-start md:items-center w-full max-w-7xl">
+          <h1 className="text-2xl font-semibold text-slate-950 dark:text-white">
+            Select table
+          </h1>
+          <TableStatusLegend />
+          <TableFilter
+            selected={selectedFilter}
+            onFilterChange={setSelectedFilter}
+          />
+        </section>
+
+        <TableGrid floor={selectedFloor} filter={selectedFilter} />
+
+        <TableFloorSelector
+          selectedFloor={selectedFloor}
+          onFloorChange={setSelectedFloor}
+        />
+      </main>
     </Layout>
   );
 }
-
-export default withAuth(TableManagement);

@@ -7,7 +7,6 @@ import {
   FaCog,
   FaChevronDown,
   FaChevronRight,
-  FaSignOutAlt,
   FaArrowLeft,
   FaArrowRight,
 } from "react-icons/fa";
