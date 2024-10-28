@@ -1,9 +1,11 @@
+// Header.jsx
 "use client";
 import { useRouter } from "next/navigation";
 import React from "react";
 import DarkModeToggle from "./DarkModeToggle";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-function Header() {
+function Header({ isOpen, toggleSidebar }) {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -12,15 +14,20 @@ function Header() {
   };
 
   return (
-    <header className="flex flex-wrap gap-5 justify-between px-6 py-3 w-full bg-gray-800 border-b border-solid border-b-gray-200 max-md:pr-5 max-md:max-w-full">
+    <header className="flex flex-wrap gap-5 justify-between px-6 py-[9.5px] w-full bg-gray-800 border-b border-solid border-b-gray-200 max-md:pr-5 max-md:max-w-full">
       <div className="flex gap-7 items-center max-md:max-w-full">
+        <button
+          onClick={toggleSidebar}
+          className="text-gray-200 hover:text-gray-400 transition-colors"
+        >
+          {isOpen ? <FaArrowLeft /> : <FaArrowRight />}
+        </button>
         <div className="gap-2 self-stretch px-3 py-2 my-auto text-sm font-semibold leading-relaxed text-center bg-gray-50 rounded-md border border-solid border-zinc-200 text-zinc-900">
           Law Garden Outlet
         </div>
       </div>
       <div className="flex gap-4 my-auto">
-          <DarkModeToggle />
-       
+        <DarkModeToggle />
         <button
           onClick={handleLogout}
           className="px-4 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"

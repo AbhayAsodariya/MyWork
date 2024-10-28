@@ -1,3 +1,4 @@
+// Sidebar.jsx
 "use client";
 import Link from "next/link";
 import { useState } from "react";
@@ -7,15 +8,10 @@ import {
   FaCog,
   FaChevronDown,
   FaChevronRight,
-  FaArrowLeft,
-  FaArrowRight,
 } from "react-icons/fa";
 
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+const Sidebar = ({ isOpen }) => {
   const [activeMenu, setActiveMenu] = useState(null);
-
-  const toggleSidebar = () => setIsOpen(!isOpen);
 
   const handleMouseEnter = (menu) => {
     if (!isOpen) setActiveMenu(menu);
@@ -79,22 +75,16 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`h-screen bg-gray-800 ${
+      className={`h-screen bg-gray-800 border-r ${
         isOpen ? "w-64" : "w-16"
       } transition-all duration-300 ease-in-out`}
     >
       <div className="flex items-center justify-between p-4 border-b">
         {isOpen ? (
-          <h1 className="text-xl font-bold">ResPos</h1>
+          <h1 className="text-xl font-bold text-white">ResPos</h1>
         ) : (
-          <h1 className="text-xl font-bold">RP</h1>
+          <h1 className="text-xl font-bold text-white">RIP</h1>
         )}
-        <button
-          onClick={toggleSidebar}
-          className="text-gray-500 hover:text-gray-700"
-        >
-          {isOpen ? <FaArrowLeft /> : <FaArrowRight />}
-        </button>
       </div>
 
       <nav className="mt-4">
@@ -103,19 +93,8 @@ const Sidebar = () => {
           icon={FaUser}
           label="Table Management"
           link="/TableManagement"
-          // submenu={[
-          //   { label: "View Profile", link: "/profile" },
-          //   { label: "Edit Profile", link: "/profile/edit" },
-          // ]}
         />
-        <MenuItem
-          icon={FaCog}
-          label="Settings"
-          // submenu={[
-          //   { label: "General", link: "/settings/general" },
-          //   { label: "Security", link: "/settings/security" },
-          // ]}
-        />
+        <MenuItem icon={FaCog} label="Settings" />
       </nav>
     </div>
   );
