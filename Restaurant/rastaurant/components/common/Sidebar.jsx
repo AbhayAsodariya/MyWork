@@ -83,7 +83,7 @@ const Sidebar = ({ isOpen }) => {
         {isOpen ? (
           <h1 className="text-xl font-bold text-white">ResPos</h1>
         ) : (
-          <h1 className="text-xl font-bold text-white">RIP</h1>
+          <h1 className="text-xl font-bold text-white">RP</h1>
         )}
       </div>
 
