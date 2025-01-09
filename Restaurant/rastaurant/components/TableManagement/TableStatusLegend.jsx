@@ -24,7 +24,7 @@ const statusItems = [
   {
     color: "bg-yellow-400",
     label: "Bill Settlement",
-    ariaLabel: "Shows tables in bill settlement",
+    ariaLabel: "Shows tables in bill settlement",                                                                                                         
   },
 ];
 

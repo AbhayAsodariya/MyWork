@@ -94,6 +94,20 @@ const Sidebar = ({ isOpen }) => {
           label="Table Management"
           link="/TableManagement"
         />
+        {/* <MenuItem
+          icon={FaUser}
+          label="Table Management"
+          submenu={[
+            {
+              label: "Add Table",
+              link: "/TableManagement/AddTable",
+            },
+            {
+              label: "Manage Tables",
+              link: "/TableManagement/ManageTables",
+            },
+          ]}
+        /> */}
         <MenuItem icon={FaCog} label="Settings" />
       </nav>
     </div>
